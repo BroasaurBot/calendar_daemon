@@ -1,0 +1,25 @@
+#!/sbin/openrc-run
+
+DAEMON="/opt/calendar/daemon.py"
+CALENDAR="/opt/calendar/calendar.py"
+DEFAULT_DATABASE_PATH=" "
+
+start() {
+        #run the daemon
+        python3 $DAEMON $DEFAULT_DATABASE_PATH &
+        #create a alias to call calendar
+        #alias calendar="python3 $CALENDAR"
+}
+
+stop() {
+        #Collect the pid of running daemons
+        RUNNING=$( ps -f | grep "python3 $SCRIPT" | grep -v "grep" | cut -d ' ' -f 2 )
+
+        #Send interrupt to each daemon
+        for daemon in $RUNNING
+        do
+        kill -2 $daemon
+        python3 $CALENDAR stop
+        done
+}
+
