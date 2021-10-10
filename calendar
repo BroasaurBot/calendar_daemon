@@ -1,7 +1,7 @@
 #!/sbin/openrc-run
 
-DAEMON="/opt/calendar/daemon.py"
-CALENDAR="/opt/calendar/calendar.py"
+DAEMON="/opt/calendar_script/daemon.py"
+CALENDAR="/opt/calendar_script/calendar.py"
 DEFAULT_DATABASE_PATH=" "
 
 start() {
